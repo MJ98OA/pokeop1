@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #675073;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokemongame.HelloController">
    <children>
@@ -17,11 +18,17 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
             </GridPane>
-            <Label fx:id="textoelegir" alignment="CENTER" layoutX="26.0" layoutY="489.0" text="Elegir un pokémon" />
-            <Label fx:id="textosalir" layoutX="831.0" layoutY="489.0" text="Salir">
+            <Label fx:id="textoelegir" alignment="CENTER" layoutX="29.0" layoutY="481.0" text="Elegir un pokémon">
+               <font>
+                  <Font name="Liberation Mono" size="13.0" />
+               </font></Label>
+            <Label fx:id="textosalir" layoutX="827.0" layoutY="484.0" text="Continuar">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font name="Liberation Mono" size="13.0" />
+               </font>
             </Label>
          </children>
          <rotationAxis>

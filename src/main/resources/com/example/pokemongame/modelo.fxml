@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="contenedorpokemon" minHeight="0.0" minWidth="0.0" onMouseClicked="#seleccionPokemon" prefHeight="234.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokemongame.ModelController">
    <rotationAxis>
@@ -19,15 +20,21 @@
          <children>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="280.0">
                <children>
-                  <Label fx:id="nombrepokemon" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" text="miuuur">
+                  <Label fx:id="nombrepokemon" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" style="-fx-text-fill: #86C4FF;">
                      <HBox.margin>
                         <Insets right="140.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="Liberation Mono" size="13.0" />
+                     </font>
                   </Label>
-                  <Label fx:id="nivelpokemon" alignment="CENTER_RIGHT" text="Nv 20">
+                  <Label fx:id="nivelpokemon" alignment="CENTER_RIGHT" style="-fx-text-fill: #86C4FF;">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <font>
+                        <Font name="Liberation Mono" size="13.0" />
+                     </font>
                   </Label>
                </children>
             </HBox>
@@ -45,16 +52,25 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="10.0" prefWidth="280.0">
                <children>
-                  <Label fx:id="vidaActual" text="100">
+                  <Label fx:id="vidaActual" style="-fx-text-fill: #86C4FF;">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="Liberation Mono" size="13.0" />
+                     </font>
                   </Label>
-                  <Label text="/" />
-                  <Label fx:id="vidaMaxima" text="100">
+                  <Label fx:id="barra" style="-fx-text-fill: #86C4FF;" text="/">
+                     <font>
+                        <Font name="Liberation Mono" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="vidaMaxima" style="-fx-text-fill: #86C4FF;">
                      <HBox.margin>
                         <Insets right="100.0" />
                      </HBox.margin>
+                     <font>
+                        <Font name="Liberation Mono" size="13.0" />
+                     </font>
                   </Label>
                   <Button fx:id="botonseleccion" alignment="TOP_CENTER" contentDisplay="TOP" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="40.0" text="✓ " textAlignment="RIGHT" textFill="#25ff21" />
                </children>

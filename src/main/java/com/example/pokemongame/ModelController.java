@@ -8,15 +8,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Paint;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Objects;
 
 public class ModelController {
-    InputStreamReader isr = new InputStreamReader(System.in);
-    BufferedReader br = new BufferedReader (isr);
+
+    @FXML
+    private Label barra;
+
     @FXML
     private ProgressBar barravidapokemon;
 
@@ -52,10 +51,16 @@ public class ModelController {
 
     @FXML
     public void seleccionPokemon(MouseEvent event){
-        pokemons.setSeleccionado(true);
+
         controllerVentanaAnterior.pokemonSeleccionado();
-        fondoeleccion.setStyle("-fx-background-color: blue");
-        //fondoeleccion.setStyle("-fx-background-color: red");
+        fondoeleccion.setStyle("-fx-background-color: #A99DB0");
+        nombrepokemon.setTextFill(Paint.valueOf("#E8F6F8"));
+        nivelpokemon.setTextFill(Paint.valueOf("#E8F6F8"));
+        vidaActual.setTextFill(Paint.valueOf("#E8F6F8"));
+        vidaMaxima.setTextFill(Paint.valueOf("#E8F6F8"));
+        barra.setTextFill(Paint.valueOf("#E8F6F8"));
+        controllerVentanaAnterior.textosalir.setStyle("-fx-background-color: #B90DB0");
+
 
 
     }
@@ -69,6 +74,7 @@ public class ModelController {
             nombrepokemon.setText(pokemons.getNombrepokemon());
             nivelpokemon.setText("Nv"+pokemons.getNivelpokemon());
             vidaActual.setText(""+pokemons.getVidaActual());
+            vidaMaxima.setText(""+pokemons.getVidaMaxima());
             Image imggenero=new Image(pokemons.getImagengenero());
             sexopokemon.setImage(imggenero);
             Image imgpoke=new Image(pokemons.getImgenpokemon());
@@ -82,6 +88,12 @@ public class ModelController {
 
 
     public void pokemonNoSeleccionado() {
-        fondoeleccion.setStyle("-fx-background-color: red");
+        fondoeleccion.setStyle("-fx-background-color: #524659");
+        nombrepokemon.setTextFill(Paint.valueOf("#86C4FF"));
+        nivelpokemon.setTextFill(Paint.valueOf("#86C4FF"));
+        vidaActual.setTextFill(Paint.valueOf("#86C4FF"));
+        vidaMaxima.setTextFill(Paint.valueOf("#86C4FF"));
+        barra.setTextFill(Paint.valueOf("#86C4FF"));
+
     }
 }

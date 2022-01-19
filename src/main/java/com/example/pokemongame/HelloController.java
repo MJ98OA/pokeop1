@@ -23,23 +23,22 @@ public class HelloController<Private> implements Initializable {
     private Label textoelegir;
 
     @FXML
-    private Label textosalir;
+    public Label textosalir;
 
 
     ArrayList<ModelController> listaController = new ArrayList<>();
 
     Random r=new Random();
-    int aleatorio=r.nextInt(200-100+1)+100;
     public List<Pokemons> pokemons = new ArrayList<>();
     public List<Pokemons> getData() {
         List<Pokemons> pokemons = new ArrayList<>();
         List<Pokemons> listaPokemons=new ArrayList<>();
-        Pokemons p1=new Pokemons("Miu",23,"src\\main\\java\\com\\example\\pokemongame\\img\\miu.png","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",aleatorio,aleatorio,true);
-        Pokemons p2=new Pokemons("Bulbasaur",23,"src\\main\\java\\com\\example\\pokemongame\\img\\bulbasaur.png","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",aleatorio,aleatorio,false);
-        Pokemons p3=new Pokemons("Squirtle",23,"src\\main\\java\\com\\example\\pokemongame\\img\\squirtle.png","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",aleatorio,aleatorio,false);
-        Pokemons p4=new Pokemons("Miu2",23,"src\\main\\java\\com\\example\\pokemongame\\img\\miu.png","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",aleatorio,aleatorio,false);
-        Pokemons p5=new Pokemons("Bulbasaur2",23,"src\\main\\java\\com\\example\\pokemongame\\img\\bulbasaur.png","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",aleatorio,aleatorio,false);
-        Pokemons p6=new Pokemons("Squirtle2",23,"src\\main\\java\\com\\example\\pokemongame\\img\\squirtle.png","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",aleatorio,aleatorio,false);
+        Pokemons p1=new Pokemons("Miutu",123,"src\\main\\java\\com\\example\\pokemongame\\img\\mewtwo.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",200,200,true);
+        Pokemons p2=new Pokemons("Aggron",73,"src\\main\\java\\com\\example\\pokemongame\\img\\aggron-mega.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",180,180,false);
+        Pokemons p3=new Pokemons("Arceus",98,"src\\main\\java\\com\\example\\pokemongame\\img\\arceus.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",190,190,false);
+        Pokemons p4=new Pokemons("dialga",105,"src\\main\\java\\com\\example\\pokemongame\\img\\dialga.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",160,160,false);
+        Pokemons p5=new Pokemons("Dragonite",140,"src\\main\\java\\com\\example\\pokemongame\\img\\dragonite.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",250,250,false);
+        Pokemons p6=new Pokemons("Gyarados",100,"src\\main\\java\\com\\example\\pokemongame\\img\\gyarados-f.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",220,220,false);
         listaPokemons.add(p1);
         listaPokemons.add(p2);
         listaPokemons.add(p3);
@@ -53,24 +52,28 @@ public class HelloController<Private> implements Initializable {
         for (int i = 0; i < 6; i++) {
             pokemon = new Pokemons();
             pokemon.setNombrepokemon(listaPokemons.get(i).getNombrepokemon());
-            pokemon.setNivelpokemon(20);
+            pokemon.setNivelpokemon(listaPokemons.get(i).getNivelpokemon());
             File f = new File(listaPokemons.get(i).getImgenpokemon());
             pokemon.setImgenpokemon(f.toURI().toString());
 
-            File f1 = new File("src\\main\\java\\com\\example\\pokemongame\\img\\genero.png");
+            File f1 = new File("src\\main\\java\\com\\example\\pokemongame\\img\\male.png");
             pokemon.setImagengenero(f1.toURI().toString());
 
             File f2 = new File("src\\main\\java\\com\\example\\pokemongame\\img\\ps.png");
             pokemon.setImagenps(f2.toURI().toString());
 
-            pokemon.setVidaMaxima(200);
-            pokemon.setVidaActual(200);
+            pokemon.setVidaMaxima(listaPokemons.get(i).getVidaMaxima());
+            pokemon.setVidaActual(listaPokemons.get(i).getVidaActual());
 
             pokemon.seleccionado=listaPokemons.get(i).seleccionado;
             pokemons.add(pokemon);
+            textosalir.setStyle("-fx-background-color: #A99DB0");
+
+
         }
         return pokemons;
     }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

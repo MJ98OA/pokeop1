@@ -65,9 +65,7 @@ public class Pokemons {
         this.imagenps = imagenps;
     }
 
-    public int getVidaActual() {
-        return vidaActual;
-    }
+    public int getVidaActual() {return vidaActual;}
 
     public void setVidaActual(int vidaActual) {
         this.vidaActual = vidaActual;
@@ -77,9 +75,7 @@ public class Pokemons {
         return vidaMaxima;
     }
 
-    public void setVidaMaxima(int vidaMaxima) {
-        this.vidaMaxima = vidaMaxima;
-    }
+    public void setVidaMaxima(int vidaMaxima) {this.vidaMaxima = vidaMaxima;}
 
     public boolean isSeleccionado() {
         return seleccionado;
@@ -89,7 +85,4 @@ public class Pokemons {
         this.seleccionado = seleccionado;
     }
 
-    public void reseteoSeleccion(){
-        setSeleccionado(false);
-    }
 }
