@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="900.0" style="-fx-background-color: #675073;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokemongame.HelloController">
+   <children>
+      <Pane layoutX="57.0" layoutY="22.0" prefHeight="504.0" prefWidth="900.0" style="-fx-background-color: #7D6A87;" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0">
+         <children>
+            <GridPane fx:id="escenarioPokemons" alignment="CENTER" layoutX="29.0" layoutY="33.0" prefHeight="441.0" prefWidth="843.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+            </GridPane>
+            <Label fx:id="textoelegir" alignment="CENTER" layoutX="26.0" layoutY="489.0" text="Elegir un pokémon" />
+            <Label fx:id="textosalir" layoutX="831.0" layoutY="489.0" text="Salir">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+         </children>
+         <rotationAxis>
+            <Point3D />
+         </rotationAxis>
+      </Pane>
+   </children>
+</AnchorPane>
