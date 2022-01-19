@@ -26,6 +26,7 @@ public class HelloController<Private> implements Initializable {
     private Label textosalir;
 
 
+    ArrayList<ModelController> listaController = new ArrayList<>();
 
     Random r=new Random();
     int aleatorio=r.nextInt(200-100+1)+100;
@@ -86,7 +87,8 @@ public class HelloController<Private> implements Initializable {
             AnchorPane anchorPane = fxmlLoader.load();
 
             ModelController modelController = fxmlLoader.getController();
-            modelController.setData(pokemons.get(i));
+            modelController.setData(pokemons.get(i), this);
+            listaController.add(modelController);
 
             escenarioPokemons.add(anchorPane,columnas++,filas);
             if(columnas==3){
@@ -104,5 +106,11 @@ public class HelloController<Private> implements Initializable {
 
 
 
+    }
+
+    public void pokemonSeleccionado() {
+        for(ModelController controller: listaController) {
+            controller.pokemonNoSeleccionado();
+        }
     }
 }

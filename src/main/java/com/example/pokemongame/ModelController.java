@@ -47,23 +47,24 @@ public class ModelController {
     @FXML
     private Label vidaMaxima;
 
+
+    private HelloController controllerVentanaAnterior;
+
     @FXML
     public void seleccionPokemon(MouseEvent event){
         pokemons.setSeleccionado(true);
-        if(pokemons.isSeleccionado())
-            fondoeleccion.setStyle("-fx-background-color: blue");
-        else
-            fondoeleccion.setStyle("-fx-background-color: red");
+        controllerVentanaAnterior.pokemonSeleccionado();
+        fondoeleccion.setStyle("-fx-background-color: blue");
+        //fondoeleccion.setStyle("-fx-background-color: red");
 
-        HelloController helloController;
-        helloController.
+
     }
 
 
     private Pokemons pokemons;
 
-    public void setData(Pokemons pokemons){
-
+    public void setData(Pokemons pokemons, HelloController controller){
+            this.controllerVentanaAnterior = controller;
             this.pokemons=pokemons;
             nombrepokemon.setText(pokemons.getNombrepokemon());
             nivelpokemon.setText("Nv"+pokemons.getNivelpokemon());
@@ -77,8 +78,10 @@ public class ModelController {
             barravidapokemon.setStyle("-fx-accent: #00FA00");
             pokemons.setSeleccionado(false);
 
-
     }
 
 
+    public void pokemonNoSeleccionado() {
+        fondoeleccion.setStyle("-fx-background-color: red");
+    }
 }
