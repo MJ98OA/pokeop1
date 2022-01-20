@@ -3,7 +3,9 @@ package com.example.pokemongame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -16,6 +18,8 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class HelloController<Private> implements Initializable {
+
+
     @FXML
     private GridPane escenarioPokemons;
 
@@ -24,6 +28,16 @@ public class HelloController<Private> implements Initializable {
 
     @FXML
     public Label textosalir;
+
+    @FXML
+    public Button bBatalla;
+
+    @FXML
+    void iniciarBatalla(MouseEvent event) {
+
+    }
+
+
 
 
     ArrayList<ModelController> listaController = new ArrayList<>();
@@ -67,8 +81,6 @@ public class HelloController<Private> implements Initializable {
 
             pokemon.seleccionado=listaPokemons.get(i).seleccionado;
             pokemons.add(pokemon);
-            textosalir.setStyle("-fx-background-color: #A99DB0");
-
 
         }
         return pokemons;
@@ -77,6 +89,9 @@ public class HelloController<Private> implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+
+
         pokemons.addAll(getData());
 
         int columnas=0;
@@ -92,12 +107,14 @@ public class HelloController<Private> implements Initializable {
             ModelController modelController = fxmlLoader.getController();
             modelController.setData(pokemons.get(i), this);
             listaController.add(modelController);
-
+            bBatalla.setVisible(true);
             escenarioPokemons.add(anchorPane,columnas++,filas);
             if(columnas==3){
                 columnas=0;
                 filas++;
             }
+
+
         }
 
 
@@ -107,13 +124,28 @@ public class HelloController<Private> implements Initializable {
             e.printStackTrace();
         }
 
-
+        bBatalla.setVisible(false);
 
     }
 
     public void pokemonSeleccionado() {
+
         for(ModelController controller: listaController) {
             controller.pokemonNoSeleccionado();
         }
+
+
     }
+
+
+
+    public void activarboton (boolean activado){
+        bBatalla.setVisible(activado);
+    }
+
+
+
+
+
+
 }

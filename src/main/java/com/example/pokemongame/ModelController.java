@@ -11,7 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
 
 
-public class ModelController {
+public class ModelController{
 
     @FXML
     private Label barra;
@@ -59,14 +59,13 @@ public class ModelController {
         vidaActual.setTextFill(Paint.valueOf("#E8F6F8"));
         vidaMaxima.setTextFill(Paint.valueOf("#E8F6F8"));
         barra.setTextFill(Paint.valueOf("#E8F6F8"));
-        controllerVentanaAnterior.textosalir.setStyle("-fx-background-color: #B90DB0");
-
+        controllerVentanaAnterior.activarboton(true);
 
 
     }
 
 
-    private Pokemons pokemons;
+    public Pokemons pokemons;
 
     public void setData(Pokemons pokemons, HelloController controller){
             this.controllerVentanaAnterior = controller;
@@ -94,6 +93,9 @@ public class ModelController {
         vidaActual.setTextFill(Paint.valueOf("#86C4FF"));
         vidaMaxima.setTextFill(Paint.valueOf("#86C4FF"));
         barra.setTextFill(Paint.valueOf("#86C4FF"));
+    }
 
+    public Pokemons obtenerPokemon(){
+        return pokemons;
     }
 }
