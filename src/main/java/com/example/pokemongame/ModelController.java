@@ -1,5 +1,6 @@
 package com.example.pokemongame;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -59,7 +60,14 @@ public class ModelController{
         vidaActual.setTextFill(Paint.valueOf("#E8F6F8"));
         vidaMaxima.setTextFill(Paint.valueOf("#E8F6F8"));
         barra.setTextFill(Paint.valueOf("#E8F6F8"));
-        controllerVentanaAnterior.activarboton(true);
+        controllerVentanaAnterior.bBatalla.setVisible(true);
+        controllerVentanaAnterior.bBatalla.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println(pokemons.getNombrepokemon());
+
+            }
+        });
 
 
     }
@@ -81,7 +89,7 @@ public class ModelController{
             Image imgps=new Image(pokemons.getImagenps());
             iconopspokemon.setImage(imgps);
             barravidapokemon.setStyle("-fx-accent: #00FA00");
-            pokemons.setSeleccionado(false);
+            obtenerPokemon(pokemons);
 
     }
 
@@ -95,7 +103,11 @@ public class ModelController{
         barra.setTextFill(Paint.valueOf("#86C4FF"));
     }
 
-    public Pokemons obtenerPokemon(){
-        return pokemons;
+
+
+
+    public void obtenerPokemon(Pokemons datospokemon) {
+
     }
+
 }

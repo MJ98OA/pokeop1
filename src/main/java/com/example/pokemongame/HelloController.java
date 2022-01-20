@@ -3,6 +3,7 @@ package com.example.pokemongame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -18,7 +19,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class HelloController<Private> implements Initializable {
-
+    ModelController modelController;
 
     @FXML
     private GridPane escenarioPokemons;
@@ -34,6 +35,7 @@ public class HelloController<Private> implements Initializable {
 
     @FXML
     void iniciarBatalla(MouseEvent event) {
+
 
     }
 
@@ -107,7 +109,7 @@ public class HelloController<Private> implements Initializable {
             ModelController modelController = fxmlLoader.getController();
             modelController.setData(pokemons.get(i), this);
             listaController.add(modelController);
-            bBatalla.setVisible(true);
+
             escenarioPokemons.add(anchorPane,columnas++,filas);
             if(columnas==3){
                 columnas=0;
@@ -117,15 +119,11 @@ public class HelloController<Private> implements Initializable {
 
         }
 
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         bBatalla.setVisible(false);
-
     }
 
     public void pokemonSeleccionado() {
@@ -134,16 +132,7 @@ public class HelloController<Private> implements Initializable {
             controller.pokemonNoSeleccionado();
         }
 
-
     }
-
-
-
-    public void activarboton (boolean activado){
-        bBatalla.setVisible(activado);
-    }
-
-
 
 
 
