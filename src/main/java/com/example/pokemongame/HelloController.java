@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 public class HelloController<Private> implements Initializable {
-    ModelController modelController;
+
 
     @FXML
     private GridPane escenarioPokemons;
@@ -37,6 +38,23 @@ public class HelloController<Private> implements Initializable {
     void iniciarBatalla(MouseEvent event) {
 
 
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("Escenario.fxml"));
+            EscenarioController escenarioController = fxmlLoader.getController();
+
+            Scene scene = new Scene(fxmlLoader.load(), 900, 550);
+            Stage stage = new Stage();
+            stage.setTitle("New Window");
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            System.out.println(e);
+
+        }
+
     }
 
 
@@ -46,6 +64,7 @@ public class HelloController<Private> implements Initializable {
 
     Random r=new Random();
     public List<Pokemons> pokemons = new ArrayList<>();
+
     public List<Pokemons> getData() {
         List<Pokemons> pokemons = new ArrayList<>();
         List<Pokemons> listaPokemons=new ArrayList<>();
@@ -89,10 +108,9 @@ public class HelloController<Private> implements Initializable {
     }
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
 
         pokemons.addAll(getData());
 

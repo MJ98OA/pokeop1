@@ -5,16 +5,39 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="fondoBatalla" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokemongame.EscenarioController">
+<AnchorPane fx:id="fondoBatalla" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokemongame.EscenarioController">
    <children>
-      <Pane layoutX="352.0" layoutY="83.0" prefHeight="194.0" prefWidth="223.0" />
-      <ProgressBar layoutX="72.0" layoutY="335.0" prefWidth="200.0" progress="0.0" />
-      <ProgressBar layoutX="375.0" layoutY="44.0" prefWidth="200.0" progress="0.0" />
-      <Label layoutX="244.0" layoutY="363.0" text="Label" />
-      <Label layoutX="72.0" layoutY="363.0" text="Label" />
-      <Label layoutX="547.0" layoutY="21.0" text="Label" />
-      <Label fx:id="trucutu" layoutX="375.0" layoutY="21.0" text="Label" />
-      <ImageView fx:id="miPokemon" fitHeight="150.0" fitWidth="200.0" layoutX="72.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane fx:id="pokemonEnemigo" layoutX="587.0" layoutY="32.0" prefHeight="179.0" prefWidth="230.0" />
+      <ProgressBar fx:id="vidaMiPokemon" layoutX="304.0" layoutY="353.0" prefHeight="18.0" prefWidth="155.0" progress="0.0" />
+      <Label fx:id="nivelMiPokemon" layoutX="424.0" layoutY="335.0" text="Label" />
+      <Label fx:id="nombreMiPokemon" layoutX="304.0" layoutY="335.0" text="Label" />
+      <Label fx:id="nivelPokemonEnemigo" layoutX="551.0" layoutY="98.0" text="Label" />
+      <Label fx:id="nombrePokemonEnemigo" layoutX="424.0" layoutY="98.0" text="Label" />
+      <ImageView fx:id="miPokemon" fitHeight="179.0" fitWidth="230.0" layoutX="67.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
+      <ProgressBar fx:id="vidaPokemonEnemigo" layoutX="424.0" layoutY="112.0" prefHeight="18.0" prefWidth="155.0" progress="0.0" />
+      <ImageView fx:id="psimgE" fitHeight="18.0" fitWidth="34.0" layoutX="390.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="psimgA" fitHeight="18.0" fitWidth="34.0" layoutX="459.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="txAtaque1" layoutX="77.0" layoutY="444.0" text="Ataque Seguro">
+         <font>
+            <Font name="Liberation Mono" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="txAtaque2" layoutX="290.0" layoutY="444.0" text="Ataque Arriesgado">
+         <font>
+            <Font name="Liberation Mono" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="txAtaque3" layoutX="77.0" layoutY="489.0" text="Ataque Muy Arriesgado">
+         <font>
+            <Font name="Liberation Mono" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="txCancelar" layoutX="344.0" layoutY="489.0" text="Cancelar">
+         <font>
+            <Font name="Liberation Mono" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

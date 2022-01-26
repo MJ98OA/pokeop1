@@ -58,9 +58,9 @@ public class ModelController<modelcontroller> {
 
     private HelloController controllerVentanaAnterior;
 
-    private Pokemons mipokemon;
+    public static Pokemons mipokemon;
 
-    private ModelController model=this;
+
 
 
     @FXML
@@ -77,36 +77,6 @@ public class ModelController<modelcontroller> {
 
         mipokemon=pokemons;
 
-
-
-
-        controllerVentanaAnterior.bBatalla.setOnMouseClicked(new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-
-                try {
-
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("Escenario.fxml"));
-                    EscenarioController escenarioController = fxmlLoader.getController();
-
-                    escenarioController.obtenerPoke(mipokemon,model);
-
-                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-                    Stage stage = new Stage();
-                    stage.setTitle("New Window");
-                    stage.setScene(scene);
-                    stage.show();
-
-                } catch (IOException e) {
-                    System.out.println(e);
-
-                }
-
-
-            }
-        });
 
 
     }
@@ -143,6 +113,10 @@ public class ModelController<modelcontroller> {
 
 
 
+
+    public Pokemons devolvercontrolador(){
+        return mipokemon;
+    }
 
 
 
