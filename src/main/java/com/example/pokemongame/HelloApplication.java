@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    public static final String currency="Nv ";
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
             stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
-        } catch (Exception e) {
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }

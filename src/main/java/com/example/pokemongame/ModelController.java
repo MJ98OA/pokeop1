@@ -2,17 +2,25 @@ package com.example.pokemongame;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 
-public class ModelController{
+public class ModelController<modelcontroller> {
+
 
     @FXML
     private Label barra;
@@ -50,8 +58,13 @@ public class ModelController{
 
     private HelloController controllerVentanaAnterior;
 
+    private Pokemons mipokemon;
+
+    private ModelController model=this;
+
+
     @FXML
-    public void seleccionPokemon(MouseEvent event){
+    public void seleccionPokemon (MouseEvent event) throws IOException {
 
         controllerVentanaAnterior.pokemonSeleccionado();
         fondoeleccion.setStyle("-fx-background-color: #A99DB0");
@@ -61,10 +74,36 @@ public class ModelController{
         vidaMaxima.setTextFill(Paint.valueOf("#E8F6F8"));
         barra.setTextFill(Paint.valueOf("#E8F6F8"));
         controllerVentanaAnterior.bBatalla.setVisible(true);
+
+        mipokemon=pokemons;
+
+
+
+
         controllerVentanaAnterior.bBatalla.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
             @Override
             public void handle(MouseEvent event) {
-                System.out.println(pokemons.getNombrepokemon());
+
+                try {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("Escenario.fxml"));
+                    EscenarioController escenarioController = fxmlLoader.getController();
+
+                    escenarioController.obtenerPoke(mipokemon,model);
+
+                    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                    Stage stage = new Stage();
+                    stage.setTitle("New Window");
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException e) {
+                    System.out.println(e);
+
+                }
+
 
             }
         });
@@ -75,7 +114,7 @@ public class ModelController{
 
     public Pokemons pokemons;
 
-    public void setData(Pokemons pokemons, HelloController controller){
+    public void setData(Pokemons pokemons, HelloController controller) throws IOException {
             this.controllerVentanaAnterior = controller;
             this.pokemons=pokemons;
             nombrepokemon.setText(pokemons.getNombrepokemon());
@@ -89,7 +128,6 @@ public class ModelController{
             Image imgps=new Image(pokemons.getImagenps());
             iconopspokemon.setImage(imgps);
             barravidapokemon.setStyle("-fx-accent: #00FA00");
-            obtenerPokemon(pokemons);
 
     }
 
@@ -106,8 +144,6 @@ public class ModelController{
 
 
 
-    public void obtenerPokemon(Pokemons datospokemon) {
 
-    }
 
 }
