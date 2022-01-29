@@ -1,43 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="fondoBatalla" prefHeight="550.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pokemongame.EscenarioController">
    <children>
-      <Pane fx:id="pokemonEnemigo" layoutX="587.0" layoutY="32.0" prefHeight="179.0" prefWidth="230.0" />
       <ProgressBar fx:id="vidaMiPokemon" layoutX="304.0" layoutY="353.0" prefHeight="18.0" prefWidth="155.0" progress="0.0" />
       <Label fx:id="nivelMiPokemon" layoutX="424.0" layoutY="335.0" text="Label" />
       <Label fx:id="nombreMiPokemon" layoutX="304.0" layoutY="335.0" text="Label" />
       <Label fx:id="nivelPokemonEnemigo" layoutX="551.0" layoutY="98.0" text="Label" />
       <Label fx:id="nombrePokemonEnemigo" layoutX="424.0" layoutY="98.0" text="Label" />
-      <ImageView fx:id="miPokemon" fitHeight="179.0" fitWidth="230.0" layoutX="67.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
-      <ProgressBar fx:id="vidaPokemonEnemigo" layoutX="424.0" layoutY="112.0" prefHeight="18.0" prefWidth="155.0" progress="0.0" />
-      <ImageView fx:id="psimgE" fitHeight="18.0" fitWidth="34.0" layoutX="390.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="psimgA" fitHeight="18.0" fitWidth="34.0" layoutX="459.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="txAtaque1" layoutX="77.0" layoutY="444.0" text="Ataque Seguro">
+      <ImageView fx:id="miPokemon" fitHeight="180.0" fitWidth="230.0" layoutX="67.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true" />
+      <ProgressBar fx:id="vidaPokemonEnemigo" layoutX="424.0" layoutY="115.0" prefHeight="18.0" prefWidth="155.0" progress="0.0" />
+      <ImageView fx:id="psimgE" fitHeight="18.0" fitWidth="34.0" layoutX="390.0" layoutY="115.0" onMouseEntered="#mostrarvidaE" onMouseExited="#ocultarvidaE" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="psimgA" fitHeight="18.0" fitWidth="34.0" layoutX="459.0" layoutY="353.0" onMouseEntered="#mostrarvida" onMouseExited="#ocultarvida" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="txAtaque1" layoutX="77.0" layoutY="444.0" onMouseClicked="#bAtaque1" text="Ataque Seguro">
          <font>
             <Font name="Liberation Mono" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="txAtaque2" layoutX="290.0" layoutY="444.0" text="Ataque Arriesgado">
+      <Label fx:id="txAtaque2" layoutX="290.0" layoutY="444.0" onMouseClicked="#bAtaque2" text="Ataque Arriesgado">
          <font>
             <Font name="Liberation Mono" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="txAtaque3" layoutX="77.0" layoutY="489.0" text="Ataque Muy Arriesgado">
+      <Label fx:id="txAtaque3" layoutX="77.0" layoutY="489.0" onMouseClicked="#bAtaque3" text="Ataque Muy Arriesgado">
          <font>
             <Font name="Liberation Mono" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="txCancelar" layoutX="344.0" layoutY="489.0" text="Cancelar">
+      <Label fx:id="txCancelar" layoutX="344.0" layoutY="489.0" onMouseClicked="#bcancelar" text="Cancelar">
          <font>
             <Font name="Liberation Mono" size="15.0" />
          </font>
       </Label>
+      <Button fx:id="bAtacar" layoutX="121.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#bMenuAtaques" prefHeight="26.0" prefWidth="86.0" text="Atacar" />
+      <Button fx:id="bCurar" layoutX="300.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#bCurar" prefHeight="26.0" prefWidth="86.0" text="Curar" />
+      <Label fx:id="vidaActualE" layoutX="393.0" layoutY="112.0" onMouseEntered="#mostrarvidaE" onMouseExited="#ocultarvidaE" text="Label" visible="false" />
+      <Label fx:id="vidaActualA" layoutX="459.0" layoutY="354.0" onMouseEntered="#mostrarvida" onMouseExited="#ocultarvida" text="Label" visible="false" />
+      <ImageView fx:id="pokemonEnemigo" fitHeight="180.0" fitWidth="230.0" layoutX="587.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

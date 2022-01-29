@@ -118,6 +118,8 @@ public class ModelController<modelcontroller> {
         return mipokemon;
     }
 
-
+    public void nuevosvalores(Pokemons pokemonActualizado){
+        mipokemon.setNombrepokemon(pokemonActualizado.getNombrepokemon());
+    }
 
 }
