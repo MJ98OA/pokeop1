@@ -21,6 +21,10 @@ import java.io.IOException;
 
 public class ModelController<modelcontroller> {
 
+    @FXML
+    void actualizardatos(MouseEvent event) {
+        barravidapokemon.setProgress(0.1);
+    }
 
     @FXML
     private Label barra;
@@ -118,6 +122,7 @@ public class ModelController<modelcontroller> {
 
 
     public void nuevosvalores(Pokemons pokemonActualizado){
+
         mipokemon.setVidaActual(pokemonActualizado.getVidaActual());
 
     }

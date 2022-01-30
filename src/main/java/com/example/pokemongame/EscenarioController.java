@@ -20,8 +20,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+
+
 public class EscenarioController implements Initializable {
 
+    private int i;
 
     @FXML
     private Button bAtacar;
@@ -31,6 +34,9 @@ public class EscenarioController implements Initializable {
 
     @FXML
     private AnchorPane fondoBatalla;
+
+    @FXML
+    private ImageView fondo;
 
     @FXML
     private ImageView miPokemon;
@@ -193,21 +199,20 @@ public class EscenarioController implements Initializable {
         vidaActualE.setVisible(false);
         psimgE.setVisible(true);
     }
-
-
     private Pokemons datosMiPokemon;
-
+    Random r=new Random();
     private List<Pokemons> listaPokemons;
 
     private ModelController modelController;
 
-    private int i;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         List<Pokemons> listaPokemons = new ArrayList<>();
-        Pokemons p1 = new Pokemons("Carvine", 180, "src\\main\\java\\com\\example\\pokemongame\\img\\carvine.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 190, 190, true);
-        Pokemons p2 = new Pokemons("Entei", 204, "src\\main\\java\\com\\example\\pokemongame\\img\\entei.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 210, 90, false);
-        Pokemons p3 = new Pokemons("Tordous", 250, "src\\main\\java\\com\\example\\pokemongame\\img\\tornadus.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 250, 250, true);
+        Pokemons p1 = new Pokemons("Carnivine", 180, "src\\main\\java\\com\\example\\pokemongame\\img\\carnivine.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 190, 190, false);
+        Pokemons p2 = new Pokemons("Entei", 204, "src\\main\\java\\com\\example\\pokemongame\\img\\entei.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 210, 210, false);
+        Pokemons p3 = new Pokemons("Tordous", 250, "src\\main\\java\\com\\example\\pokemongame\\img\\tornadus.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 250, 250, false);
         Pokemons p4 = new Pokemons("Weavile", 195, "src\\main\\java\\com\\example\\pokemongame\\img\\weavile-f.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 220, 220, false);
 
 
@@ -219,6 +224,7 @@ public class EscenarioController implements Initializable {
         this.listaPokemons = listaPokemons;
 
         try {
+            aleatorio();
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("modelo.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
@@ -229,6 +235,10 @@ public class EscenarioController implements Initializable {
             botonesAtaquesOf();
             cargarDatosPokemon();
             cargarDatosPokemonEnemigo();
+            File f2 = new File("src\\main\\java\\com\\example\\pokemongame\\img\\escenarioBatalla.png");
+            String url=(f2.toURI().toString());
+            Image imgfondo = new Image(url);
+            fondo.setImage(imgfondo);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -274,10 +284,12 @@ public class EscenarioController implements Initializable {
             datosMiPokemon.setVidaActual(datosMiPokemon.getVidaMaxima());
             vidaMiPokemon.setProgress(cargarvidaMiPokemon());
             vidaActualA.setText(datosMiPokemon.getVidaMaxima() + "");
+            cargarvidaMiPokemon();
         } else {
             datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() + n);
             vidaMiPokemon.setProgress(cargarvidaMiPokemon());
             vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
+            cargarvidaMiPokemon();
         }
 
 
@@ -291,10 +303,12 @@ public class EscenarioController implements Initializable {
             listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaMaxima());
             vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
             vidaActualE.setText(listaPokemons.get(i).getVidaMaxima() + "");
+            cargarvidaEnemigo();
         } else {
             listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaActual() + n);
             vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
             vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
+            cargarvidaEnemigo();
         }
 
 
@@ -335,10 +349,11 @@ public class EscenarioController implements Initializable {
         if(resultadovida>0.7){
             vidaPokemonEnemigo.setStyle("-fx-accent: #00FA00");
         }else
-            if(resultadovida<0.6 && resultadovida>0.4)
+            if(resultadovida>=0.4 && resultadovida<0.7)
                 vidaPokemonEnemigo.setStyle("-fx-accent:yellow");
                 else
-                    vidaPokemonEnemigo.setStyle("-fx-accent:red");
+                    if(resultadovida<0.3)
+                        vidaPokemonEnemigo.setStyle("-fx-accent:red");
 
         return resultadovida;
     }
@@ -352,10 +367,11 @@ public class EscenarioController implements Initializable {
         if(resultadovida>0.7){
             vidaMiPokemon.setStyle("-fx-accent: #00FA00");
         }else
-        if(resultadovida<0.6 && resultadovida>0.4)
-            vidaMiPokemon.setStyle("-fx-accent:yellow");
-        else
-            vidaMiPokemon.setStyle("-fx-accent:red");
+            if(resultadovida>=0.4 && resultadovida<0.7)
+                vidaMiPokemon.setStyle("-fx-accent:yellow");
+            else
+                if(resultadovida<0.3)
+                    vidaMiPokemon.setStyle("-fx-accent:red");
 
         return resultadovida;
 
@@ -369,7 +385,6 @@ public class EscenarioController implements Initializable {
         miPokemon.setImage(imgMiPokemon);
         nivelMiPokemon.setText("" + datosMiPokemon.getNivelpokemon());
         vidaMiPokemon.setProgress(cargarvidaMiPokemon());
-        vidaMiPokemon.setStyle("-fx-accent: #00FA00");
         Image imgps = new Image(datosMiPokemon.getImagenps());
         psimgA.setImage(imgps);
         vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
@@ -385,7 +400,7 @@ public class EscenarioController implements Initializable {
         Image imgPokemonEnemigo = new Image(listaPokemons.get(i).getImgenpokemon());
         pokemonEnemigo.setImage(imgPokemonEnemigo);
         nivelPokemonEnemigo.setText("" + listaPokemons.get(i).getNivelpokemon());
-        vidaPokemonEnemigo.setStyle("-fx-accent: #00FA00");
+
         vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
         File f2 = new File(listaPokemons.get(i).getImagenps());
         listaPokemons.get(i).setImagenps(f2.toURI().toString());
@@ -439,9 +454,9 @@ public class EscenarioController implements Initializable {
 
     }
 
-    public int aleatorio(){
+    public void aleatorio(){
         Random r=new Random();
-        return r.nextInt(listaPokemons.size());
+        this.i=r.nextInt(listaPokemons.size());
     }
 
 
