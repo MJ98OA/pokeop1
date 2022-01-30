@@ -74,6 +74,7 @@ public class ModelController<modelcontroller> {
         vidaMaxima.setTextFill(Paint.valueOf("#E8F6F8"));
         barra.setTextFill(Paint.valueOf("#E8F6F8"));
         controllerVentanaAnterior.bBatalla.setVisible(true);
+        System.out.println(pokemons.getVidaActual());
 
         mipokemon=pokemons;
 
@@ -114,12 +115,11 @@ public class ModelController<modelcontroller> {
 
 
 
-    public Pokemons devolvercontrolador(){
-        return mipokemon;
-    }
+
 
     public void nuevosvalores(Pokemons pokemonActualizado){
-        mipokemon.setNombrepokemon(pokemonActualizado.getNombrepokemon());
+        mipokemon.setVidaActual(pokemonActualizado.getVidaActual());
+
     }
 
 }

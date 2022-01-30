@@ -1,25 +1,24 @@
 package com.example.pokemongame;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
 import org.controlsfx.control.PropertySheet;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class EscenarioController implements Initializable {
 
@@ -82,22 +81,78 @@ public class EscenarioController implements Initializable {
     private ProgressBar vidaPokemonEnemigo;
 
     @FXML
-    void bAtaque1(MouseEvent event) {
+    void bAtaque1(MouseEvent event) throws InterruptedException {
+        int opcion1 = 1;
+
+        if (vivoCombateAliado()) {
+            ataquesEnemigo(opcion1);
+            vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
+            vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
+        }
+
+        if (vivoCombate()) {
+            ataques(opcion1);
+            vidaMiPokemon.setProgress(cargarvidaMiPokemon());
+            vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
+        }
+
+        if (saltarAlerta()) {
+            alerta();
+        }
+
 
     }
 
     @FXML
     void bAtaque2(MouseEvent event) {
+        int opcion1 = 2;
+
+        if (vivoCombateAliado()) {
+            ataquesEnemigo(opcion1);
+            vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
+            vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
+        }
+
+        if (vivoCombate()) {
+            ataques(opcion1);
+            vidaMiPokemon.setProgress(cargarvidaMiPokemon());
+            vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
+        }
+
+        if (saltarAlerta()) {
+            alerta();
+        }
 
     }
+
 
     @FXML
     void bAtaque3(MouseEvent event) {
+        int opcion1 = 3;
+
+        if (vivoCombateAliado()) {
+            ataquesEnemigo(opcion1);
+            vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
+            vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
+        }
+
+        if (vivoCombate()) {
+            ataques(opcion1);
+            vidaMiPokemon.setProgress(cargarvidaMiPokemon());
+            vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
+        }
+
+        if (saltarAlerta()) {
+            alerta();
+        }
 
     }
 
+
     @FXML
     void bCurar(MouseEvent event) {
+        curarse();
+        curarseEnemigo();
 
     }
 
@@ -112,6 +167,7 @@ public class EscenarioController implements Initializable {
     void bcancelar(MouseEvent event) {
         botonesAtaquesOf();
         botonesMenuInicioOn();
+
     }
 
     @FXML
@@ -138,106 +194,255 @@ public class EscenarioController implements Initializable {
         psimgE.setVisible(true);
     }
 
+
     private Pokemons datosMiPokemon;
 
-    private List<Pokemons>listaPokemons;
+    private List<Pokemons> listaPokemons;
 
     private ModelController modelController;
 
+    private int i;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<Pokemons> listaPokemons=new ArrayList<>();
-        Pokemons p1=new Pokemons("Miutu",123,"src\\main\\java\\com\\example\\pokemongame\\img\\mewtwo.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",200,200,true);
-        Pokemons p2=new Pokemons("Aggron",73,"src\\main\\java\\com\\example\\pokemongame\\img\\aggron-mega.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",180,180,false);
+        List<Pokemons> listaPokemons = new ArrayList<>();
+        Pokemons p1 = new Pokemons("Carvine", 180, "src\\main\\java\\com\\example\\pokemongame\\img\\carvine.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 190, 190, true);
+        Pokemons p2 = new Pokemons("Entei", 204, "src\\main\\java\\com\\example\\pokemongame\\img\\entei.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 210, 90, false);
+        Pokemons p3 = new Pokemons("Tordous", 250, "src\\main\\java\\com\\example\\pokemongame\\img\\tornadus.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 250, 250, true);
+        Pokemons p4 = new Pokemons("Weavile", 195, "src\\main\\java\\com\\example\\pokemongame\\img\\weavile-f.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 220, 220, false);
+
+
         listaPokemons.add(p1);
         listaPokemons.add(p2);
-        this.listaPokemons=listaPokemons;
+        listaPokemons.add(p3);
+        listaPokemons.add(p4);
+
+        this.listaPokemons = listaPokemons;
+
         try {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("modelo.fxml"));
-        AnchorPane anchorPane = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("modelo.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
+            ModelController modelController = fxmlLoader.getController();
+            this.modelController = modelController;
+            this.datosMiPokemon = modelController.mipokemon;
 
-        ModelController modelController = fxmlLoader.getController();
-        this.modelController=modelController;
-        this.datosMiPokemon=modelController.mipokemon;
-        botonesAtaquesOf();
-        cargarDatosPokemon();
-        cargarDatosPokemonEnemigo();
-
-
-
+            botonesAtaquesOf();
+            cargarDatosPokemon();
+            cargarDatosPokemonEnemigo();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void alerta() {
+        Alert customAlert = new Alert(Alert.AlertType.NONE);
+        customAlert.setTitle("Combate Finalizado");
+        customAlert.setContentText("Pokemon ganador ");
+        customAlert.getDialogPane().getButtonTypes().addAll(ButtonType.CLOSE, ButtonType.NEXT);
+        showAlert(customAlert);
+    }
+
+
+    public boolean saltarAlerta() {
+        if (listaPokemons.get(i).getVidaActual() <= 0 || datosMiPokemon.getVidaActual() <= 0) {
+            return true;
+        } else return false;
 
     }
 
-    public void botonesAtaquesOf(){
+    public Boolean vivoCombate() {
+        if (listaPokemons.get(i).getVidaActual() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public Boolean vivoCombateAliado() {
+        if (datosMiPokemon.getVidaActual() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public void curarse() {
+        Random r = new Random();
+        int n = r.nextInt(75 - 25 + 1) + 25;
+
+        if ((datosMiPokemon.getVidaActual() + n) > datosMiPokemon.getVidaMaxima()) {
+            datosMiPokemon.setVidaActual(datosMiPokemon.getVidaMaxima());
+            vidaMiPokemon.setProgress(cargarvidaMiPokemon());
+            vidaActualA.setText(datosMiPokemon.getVidaMaxima() + "");
+        } else {
+            datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() + n);
+            vidaMiPokemon.setProgress(cargarvidaMiPokemon());
+            vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
+        }
+
+
+    }
+
+    public void curarseEnemigo() {
+        Random r = new Random();
+        int n = r.nextInt(75 - 25 + 1) + 25;
+
+        if ((listaPokemons.get(i).getVidaActual() + n) > listaPokemons.get(i).getVidaMaxima()) {
+            listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaMaxima());
+            vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
+            vidaActualE.setText(listaPokemons.get(i).getVidaMaxima() + "");
+        } else {
+            listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaActual() + n);
+            vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
+            vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
+        }
+
+
+    }
+
+    public void ataques(int boton) {
+        Random r = new Random();
+        r.nextInt();
+        int ataque2 = r.nextInt(25 - 10 + 1) + 10;
+        switch (boton) {
+
+            case 1 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - 20);
+            case 2 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - ataque2);
+            case 3 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - r.nextInt(50));
+
+        }
+
+    }
+
+    public void ataquesEnemigo(int boton) {
+        Random r = new Random();
+        r.nextInt();
+        int ataque2 = r.nextInt(25 - 10 + 1) + 10;
+        switch (boton) {
+            case 1 -> listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaActual() - 20);
+            case 2 -> listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaActual() - ataque2);
+            case 3 -> listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaActual() - r.nextInt(50));
+        }
+
+    }
+
+    public double cargarvidaEnemigo() {
+
+        int vidaMaxima = listaPokemons.get(i).getVidaMaxima();
+        int vidaActual = listaPokemons.get(i).getVidaActual();
+        double resultadovida = (double) vidaActual / vidaMaxima;
+
+        if(resultadovida>0.7){
+            vidaPokemonEnemigo.setStyle("-fx-accent: #00FA00");
+        }else
+            if(resultadovida<0.6 && resultadovida>0.4)
+                vidaPokemonEnemigo.setStyle("-fx-accent:yellow");
+                else
+                    vidaPokemonEnemigo.setStyle("-fx-accent:red");
+
+        return resultadovida;
+    }
+
+    public double cargarvidaMiPokemon() {
+
+        int vidaMaxima = datosMiPokemon.getVidaMaxima();
+        int vidaActual = datosMiPokemon.getVidaActual();
+        double resultadovida = (double) vidaActual / vidaMaxima;
+
+        if(resultadovida>0.7){
+            vidaMiPokemon.setStyle("-fx-accent: #00FA00");
+        }else
+        if(resultadovida<0.6 && resultadovida>0.4)
+            vidaMiPokemon.setStyle("-fx-accent:yellow");
+        else
+            vidaMiPokemon.setStyle("-fx-accent:red");
+
+        return resultadovida;
+
+    }
+
+
+
+    public void cargarDatosPokemon() {
+        nombreMiPokemon.setText(datosMiPokemon.getNombrepokemon());
+        Image imgMiPokemon = new Image(datosMiPokemon.getImgenpokemon());
+        miPokemon.setImage(imgMiPokemon);
+        nivelMiPokemon.setText("" + datosMiPokemon.getNivelpokemon());
+        vidaMiPokemon.setProgress(cargarvidaMiPokemon());
+        vidaMiPokemon.setStyle("-fx-accent: #00FA00");
+        Image imgps = new Image(datosMiPokemon.getImagenps());
+        psimgA.setImage(imgps);
+        vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
+        vidaActualA.setVisible(false);
+
+    }
+
+
+    public void cargarDatosPokemonEnemigo() {
+        nombrePokemonEnemigo.setText(listaPokemons.get(i).getNombrepokemon());
+        File f1 = new File(listaPokemons.get(i).getImgenpokemon());
+        listaPokemons.get(i).setImgenpokemon(f1.toURI().toString());
+        Image imgPokemonEnemigo = new Image(listaPokemons.get(i).getImgenpokemon());
+        pokemonEnemigo.setImage(imgPokemonEnemigo);
+        nivelPokemonEnemigo.setText("" + listaPokemons.get(i).getNivelpokemon());
+        vidaPokemonEnemigo.setStyle("-fx-accent: #00FA00");
+        vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
+        File f2 = new File(listaPokemons.get(i).getImagenps());
+        listaPokemons.get(i).setImagenps(f2.toURI().toString());
+        Image imgPsE = new Image(listaPokemons.get(i).getImagenps());
+        psimgE.setImage(imgPsE);
+
+        vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
+        vidaActualE.setVisible(false);
+
+    }
+
+
+    public void botonesAtaquesOf() {
         txAtaque1.setVisible(false);
         txAtaque2.setVisible(false);
         txAtaque3.setVisible(false);
         txCancelar.setVisible(false);
     }
 
-    public void botonesAtaquesOn(){
+    public void botonesAtaquesOn() {
         txAtaque1.setVisible(true);
         txAtaque2.setVisible(true);
         txAtaque3.setVisible(true);
         txCancelar.setVisible(true);
     }
 
-    public void botonesMenuInicioOf(){
+    public void botonesMenuInicioOf() {
         bAtacar.setVisible(false);
         bCurar.setVisible(false);
     }
 
-    public void botonesMenuInicioOn(){
+    public void botonesMenuInicioOn() {
         bAtacar.setVisible(true);
         bCurar.setVisible(true);
     }
 
-    public void cargarDatosPokemon(){
-        nombreMiPokemon.setText(datosMiPokemon.getNombrepokemon());
-        Image imgMiPokemon=new Image(datosMiPokemon.getImgenpokemon());
-        miPokemon.setImage(imgMiPokemon);
-        nivelMiPokemon.setText(""+datosMiPokemon.getNivelpokemon());
-        vidaMiPokemon.setProgress(1.0);
-        vidaMiPokemon.setStyle("-fx-accent: #00FA00");
-        Image imgps=new Image(datosMiPokemon.getImagenps());
-        psimgA.setImage(imgps);
-        vidaActualA.setText(datosMiPokemon.getVidaActual()+"");
-        vidaActualA.setVisible(false);
+    private void showAlert(Alert alert) {
+
+        Optional<ButtonType> resultado = alert.showAndWait();
+
+        if (resultado.get() == ButtonType.CLOSE) {
+            System.exit(0);
+        }
+
+        if (resultado.get()==ButtonType.NEXT){
+
+            Stage stage = (Stage) fondoBatalla.getScene().getWindow();
+            stage.close();
+            modelController.nuevosvalores(datosMiPokemon);
+        }
 
     }
 
-
-
-    public void cargarDatosPokemonEnemigo(){
-        nombrePokemonEnemigo.setText(listaPokemons.get(1).getNombrepokemon());
-        File f1 = new File(listaPokemons.get(1).getImgenpokemon());
-        listaPokemons.get(1).setImgenpokemon(f1.toURI().toString());
-        Image imgPokemonEnemigo=new Image(listaPokemons.get(1).getImgenpokemon());
-        pokemonEnemigo.setImage(imgPokemonEnemigo);
-
-        nivelPokemonEnemigo.setText(""+listaPokemons.get(1).getNivelpokemon());
-        vidaPokemonEnemigo.setStyle("-fx-accent: #00FA00");
-        vidaPokemonEnemigo.setProgress(1.0);
-        File f2 = new File(listaPokemons.get(1).getImagenps());
-        listaPokemons.get(1).setImagenps(f2.toURI().toString());
-        Image imgPsE=new Image(listaPokemons.get(1).getImagenps());
-        psimgE.setImage(imgPsE);
-
-
-        vidaActualE.setText(listaPokemons.get(1).getVidaActual()+"");
-        vidaActualE.setVisible(false);
-
+    public int aleatorio(){
+        Random r=new Random();
+        return r.nextInt(listaPokemons.size());
     }
-
-
-
-
 
 
 }

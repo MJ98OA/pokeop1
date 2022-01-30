@@ -68,12 +68,12 @@ public class HelloController<Private> implements Initializable {
     public List<Pokemons> getData() {
         List<Pokemons> pokemons = new ArrayList<>();
         List<Pokemons> listaPokemons=new ArrayList<>();
-        Pokemons p1=new Pokemons("Miutu",123,"src\\main\\java\\com\\example\\pokemongame\\img\\mewtwo.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",200,200,true);
-        Pokemons p2=new Pokemons("Aggron",73,"src\\main\\java\\com\\example\\pokemongame\\img\\aggron-mega.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",180,180,false);
-        Pokemons p3=new Pokemons("Arceus",98,"src\\main\\java\\com\\example\\pokemongame\\img\\arceus.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",190,190,false);
-        Pokemons p4=new Pokemons("dialga",105,"src\\main\\java\\com\\example\\pokemongame\\img\\dialga.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",160,160,false);
+        Pokemons p1=new Pokemons("Miutu",126,"src\\main\\java\\com\\example\\pokemongame\\img\\mewtwo.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",200,200,true);
+        Pokemons p2=new Pokemons("Aggron",173,"src\\main\\java\\com\\example\\pokemongame\\img\\aggron-mega.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",180,180,false);
+        Pokemons p3=new Pokemons("Arceus",128,"src\\main\\java\\com\\example\\pokemongame\\img\\arceus.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",190,190,false);
+        Pokemons p4=new Pokemons("dialga",165,"src\\main\\java\\com\\example\\pokemongame\\img\\dialga.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",160,160,false);
         Pokemons p5=new Pokemons("Dragonite",140,"src\\main\\java\\com\\example\\pokemongame\\img\\dragonite.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",250,250,false);
-        Pokemons p6=new Pokemons("Gyarados",100,"src\\main\\java\\com\\example\\pokemongame\\img\\gyarados-f.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",220,220,false);
+        Pokemons p6=new Pokemons("Gyarados",142,"src\\main\\java\\com\\example\\pokemongame\\img\\gyarados-f.gif","src\\main\\java\\com\\example\\pokemongame\\img\\male.png","src\\main\\java\\com\\example\\pokemongame\\img\\ps.png",220,220,false);
         listaPokemons.add(p1);
         listaPokemons.add(p2);
         listaPokemons.add(p3);
@@ -151,8 +151,5 @@ public class HelloController<Private> implements Initializable {
         }
 
     }
-
-
-
 
 }
