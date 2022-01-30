@@ -21,10 +21,7 @@ import java.io.IOException;
 
 public class ModelController<modelcontroller> {
 
-    @FXML
-    void actualizardatos(MouseEvent event) {
-        barravidapokemon.setProgress(0.1);
-    }
+
 
     @FXML
     private Label barra;
@@ -78,7 +75,7 @@ public class ModelController<modelcontroller> {
         vidaMaxima.setTextFill(Paint.valueOf("#E8F6F8"));
         barra.setTextFill(Paint.valueOf("#E8F6F8"));
         controllerVentanaAnterior.bBatalla.setVisible(true);
-        System.out.println(pokemons.getVidaActual());
+        barravidapokemon.setProgress(cargarvidaMiPokemon());
 
         mipokemon=pokemons;
 
@@ -121,10 +118,24 @@ public class ModelController<modelcontroller> {
 
 
 
-    public void nuevosvalores(Pokemons pokemonActualizado){
 
-        mipokemon.setVidaActual(pokemonActualizado.getVidaActual());
+    public double cargarvidaMiPokemon() {
+
+        int vidaMaxima = pokemons.getVidaMaxima();
+        int vidaActual = pokemons.getVidaActual();
+        double resultadovida = (double) vidaActual / vidaMaxima;
+
+        if(resultadovida>0.7){
+            barravidapokemon.setStyle("-fx-accent: #00FA00");
+        }else
+        if(resultadovida>=0.4 && resultadovida<0.7)
+            barravidapokemon.setStyle("-fx-accent:yellow");
+        else
+        if(resultadovida<0.3)
+            barravidapokemon.setStyle("-fx-accent:red");
+
+        this.vidaActual.setText(pokemons.getVidaActual()+"");
+        return resultadovida;
 
     }
-
 }

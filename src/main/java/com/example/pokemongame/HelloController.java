@@ -21,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class HelloController<Private> implements Initializable {
 
+    @FXML
+    public AnchorPane actualizatodo;
 
     @FXML
     private GridPane escenarioPokemons;
@@ -33,6 +35,12 @@ public class HelloController<Private> implements Initializable {
 
     @FXML
     public Button bBatalla;
+
+    @FXML
+    void actualizar(MouseEvent event) {
+
+    }
+
 
     @FXML
     void iniciarBatalla(MouseEvent event) {

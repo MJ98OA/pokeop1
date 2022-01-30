@@ -169,6 +169,7 @@ public class EscenarioController implements Initializable {
 
     }
 
+
     @FXML
     void bcancelar(MouseEvent event) {
         botonesAtaquesOf();
@@ -249,8 +250,14 @@ public class EscenarioController implements Initializable {
     public void alerta() {
         Alert customAlert = new Alert(Alert.AlertType.NONE);
         customAlert.setTitle("Combate Finalizado");
-        customAlert.setContentText("Pokemon ganador ");
+        customAlert.setContentText("Pokemon ganador: "+ganador().getNombrepokemon());
         customAlert.getDialogPane().getButtonTypes().addAll(ButtonType.CLOSE, ButtonType.NEXT);
+
+
+        Image imggenero=new Image(ganador().getImgenpokemon());
+        ImageView imgGanador=new ImageView(imggenero);
+        customAlert.setGraphic(imgGanador);
+
         showAlert(customAlert);
     }
 
@@ -449,7 +456,7 @@ public class EscenarioController implements Initializable {
 
             Stage stage = (Stage) fondoBatalla.getScene().getWindow();
             stage.close();
-            modelController.nuevosvalores(datosMiPokemon);
+
         }
 
     }
@@ -457,6 +464,13 @@ public class EscenarioController implements Initializable {
     public void aleatorio(){
         Random r=new Random();
         this.i=r.nextInt(listaPokemons.size());
+    }
+
+    public Pokemons ganador(){
+        if(datosMiPokemon.getVidaActual()>0)
+            return datosMiPokemon;
+        else
+            return listaPokemons.get(i);
     }
 
 
