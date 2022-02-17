@@ -1,20 +1,14 @@
 package com.example.pokemongame;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -27,7 +21,7 @@ public class ModelController<modelcontroller> {
     private Label barra;
 
     @FXML
-    private ProgressBar barravidapokemon;
+    public ProgressBar barravidapokemon;
 
     @FXML
     private Button botonseleccion;
@@ -57,9 +51,9 @@ public class ModelController<modelcontroller> {
     private Label vidaMaxima;
 
 
-    private HelloController controllerVentanaAnterior;
+    private EscenarioSeleccionController controllerVentanaAnterior;
 
-    public static Pokemons mipokemon;
+    public static Pokemons mipokemonSeleccionado;
 
 
 
@@ -75,20 +69,21 @@ public class ModelController<modelcontroller> {
         vidaMaxima.setTextFill(Paint.valueOf("#E8F6F8"));
         barra.setTextFill(Paint.valueOf("#E8F6F8"));
         controllerVentanaAnterior.bBatalla.setVisible(true);
-        barravidapokemon.setProgress(cargarvidaMiPokemon());
+        System.out.println(cargadepPokemons.getVidaActual());
 
-        mipokemon=pokemons;
+        mipokemonSeleccionado = cargadepPokemons;
 
-
+        System.out.println(mipokemonSeleccionado.getVidaActual());
 
     }
 
 
-    public Pokemons pokemons;
+    public Pokemons cargadepPokemons;
 
-    public void setData(Pokemons pokemons, HelloController controller) throws IOException {
+    public void setData(Pokemons pokemons, EscenarioSeleccionController controller) throws IOException {
             this.controllerVentanaAnterior = controller;
-            this.pokemons=pokemons;
+            this.cargadepPokemons =pokemons;
+
             nombrepokemon.setText(pokemons.getNombrepokemon());
             nivelpokemon.setText("Nv"+pokemons.getNivelpokemon());
             vidaActual.setText(""+pokemons.getVidaActual());
@@ -99,7 +94,21 @@ public class ModelController<modelcontroller> {
             imgpokemon.setImage(imgpoke);
             Image imgps=new Image(pokemons.getImagenps());
             iconopspokemon.setImage(imgps);
-            barravidapokemon.setStyle("-fx-accent: #00FA00");
+            double resultadovida = (double) pokemons.getVidaActual() / pokemons.getVidaMaxima();
+            if(resultadovida>0.7){
+                barravidapokemon.setStyle("-fx-accent: #00FA00");
+                barravidapokemon.setProgress(resultadovida);
+            }
+            else
+                if(resultadovida>=0.4 && resultadovida<0.7){
+                    barravidapokemon.setStyle("-fx-accent:yellow");
+                    barravidapokemon.setProgress(resultadovida);
+                }
+                else{
+                    barravidapokemon.setStyle("-fx-accent:red");
+                    barravidapokemon.setProgress(resultadovida);
+                }
+
 
     }
 
@@ -117,25 +126,4 @@ public class ModelController<modelcontroller> {
 
 
 
-
-
-    public double cargarvidaMiPokemon() {
-
-        int vidaMaxima = pokemons.getVidaMaxima();
-        int vidaActual = pokemons.getVidaActual();
-        double resultadovida = (double) vidaActual / vidaMaxima;
-
-        if(resultadovida>0.7){
-            barravidapokemon.setStyle("-fx-accent: #00FA00");
-        }else
-        if(resultadovida>=0.4 && resultadovida<0.7)
-            barravidapokemon.setStyle("-fx-accent:yellow");
-        else
-        if(resultadovida<0.3)
-            barravidapokemon.setStyle("-fx-accent:red");
-
-        this.vidaActual.setText(pokemons.getVidaActual()+"");
-        return resultadovida;
-
-    }
 }

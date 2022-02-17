@@ -1,19 +1,14 @@
 package com.example.pokemongame;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import org.controlsfx.control.PropertySheet;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +17,7 @@ import java.util.*;
 
 
 
-public class EscenarioController implements Initializable {
+public class EscenarioBatallaController implements Initializable {
 
     private int i;
 
@@ -87,17 +82,18 @@ public class EscenarioController implements Initializable {
     private ProgressBar vidaPokemonEnemigo;
 
     @FXML
-    void bAtaque1(MouseEvent event) throws InterruptedException {
-        int opcion1 = 1;
+    void bAtaque1(MouseEvent event) throws InterruptedException, IOException {
+        int ataqueEnemigo = 1;
+        int ataquemio=4;
 
         if (vivoCombateAliado()) {
-            ataquesEnemigo(opcion1);
+            ataques(ataquemio);
             vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
             vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
         }
 
         if (vivoCombate()) {
-            ataques(opcion1);
+            ataques(ataqueEnemigo);
             vidaMiPokemon.setProgress(cargarvidaMiPokemon());
             vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
         }
@@ -105,22 +101,24 @@ public class EscenarioController implements Initializable {
         if (saltarAlerta()) {
             alerta();
         }
+
+
 
 
     }
 
     @FXML
-    void bAtaque2(MouseEvent event) {
-        int opcion1 = 2;
-
+    void bAtaque2(MouseEvent event) throws IOException {
+        int ataqueEnemigo = 2;
+        int ataquemio=5;
         if (vivoCombateAliado()) {
-            ataquesEnemigo(opcion1);
+            ataques(ataquemio);
             vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
             vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
         }
 
         if (vivoCombate()) {
-            ataques(opcion1);
+            ataques(ataqueEnemigo);
             vidaMiPokemon.setProgress(cargarvidaMiPokemon());
             vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
         }
@@ -133,17 +131,19 @@ public class EscenarioController implements Initializable {
 
 
     @FXML
-    void bAtaque3(MouseEvent event) {
-        int opcion1 = 3;
+    void bAtaque3(MouseEvent event) throws IOException {
+        int ataqueEnemigo = 3;
+        int ataquemio=6;
 
         if (vivoCombateAliado()) {
-            ataquesEnemigo(opcion1);
+            ataques(ataquemio);
             vidaPokemonEnemigo.setProgress(cargarvidaEnemigo());
             vidaActualE.setText(listaPokemons.get(i).getVidaActual() + "");
+
         }
 
         if (vivoCombate()) {
-            ataques(opcion1);
+            ataques(ataqueEnemigo);
             vidaMiPokemon.setProgress(cargarvidaMiPokemon());
             vidaActualA.setText(datosMiPokemon.getVidaActual() + "");
         }
@@ -151,6 +151,8 @@ public class EscenarioController implements Initializable {
         if (saltarAlerta()) {
             alerta();
         }
+
+
 
     }
 
@@ -200,29 +202,28 @@ public class EscenarioController implements Initializable {
         vidaActualE.setVisible(false);
         psimgE.setVisible(true);
     }
-    private Pokemons datosMiPokemon;
+    public Pokemons datosMiPokemon;
     Random r=new Random();
     private List<Pokemons> listaPokemons;
 
     private ModelController modelController;
+    private EscenarioSeleccionController escenarioSeleccionController;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        List<Pokemons> listaPokemons = new ArrayList<>();
+
         Pokemons p1 = new Pokemons("Carnivine", 180, "src\\main\\java\\com\\example\\pokemongame\\img\\carnivine.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 190, 190, false);
         Pokemons p2 = new Pokemons("Entei", 204, "src\\main\\java\\com\\example\\pokemongame\\img\\entei.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 210, 210, false);
         Pokemons p3 = new Pokemons("Tordous", 250, "src\\main\\java\\com\\example\\pokemongame\\img\\tornadus.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 250, 250, false);
         Pokemons p4 = new Pokemons("Weavile", 195, "src\\main\\java\\com\\example\\pokemongame\\img\\weavile-f.gif", "src\\main\\java\\com\\example\\pokemongame\\img\\male.png", "src\\main\\java\\com\\example\\pokemongame\\img\\ps.png", 220, 220, false);
-
 
         listaPokemons.add(p1);
         listaPokemons.add(p2);
         listaPokemons.add(p3);
         listaPokemons.add(p4);
 
-        this.listaPokemons = listaPokemons;
 
         try {
             aleatorio();
@@ -230,8 +231,14 @@ public class EscenarioController implements Initializable {
             fxmlLoader.setLocation(getClass().getResource("modelo.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
             ModelController modelController = fxmlLoader.getController();
-            this.modelController = modelController;
-            this.datosMiPokemon = modelController.mipokemon;
+
+            this.datosMiPokemon = modelController.mipokemonSeleccionado;
+
+            FXMLLoader fxmlLoader2 = new FXMLLoader();
+            fxmlLoader2.setLocation(getClass().getResource("Escenario.fxml"));
+            AnchorPane anchorPanel = fxmlLoader2.load();
+            EscenarioSeleccionController escenarioSeleccionController = fxmlLoader2.getController();
+            this.escenarioSeleccionController = escenarioSeleccionController;
 
             botonesAtaquesOf();
             cargarDatosPokemon();
@@ -326,26 +333,16 @@ public class EscenarioController implements Initializable {
         r.nextInt();
         int ataque2 = r.nextInt(25 - 10 + 1) + 10;
         switch (boton) {
-
-            case 1 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - 20);
-            case 2 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - ataque2);
-            case 3 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - r.nextInt(50));
-
-        }
-
-    }
-
-    public void ataquesEnemigo(int boton) {
-        Random r = new Random();
-        r.nextInt();
-        int ataque2 = r.nextInt(25 - 10 + 1) + 10;
-        switch (boton) {
             case 1 -> listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaActual() - 20);
             case 2 -> listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaActual() - ataque2);
             case 3 -> listaPokemons.get(i).setVidaActual(listaPokemons.get(i).getVidaActual() - r.nextInt(50));
+            case 4 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - 20);
+            case 5 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - ataque2);
+            case 6 -> datosMiPokemon.setVidaActual(datosMiPokemon.getVidaActual() - r.nextInt(50));
         }
 
     }
+
 
     public double cargarvidaEnemigo() {
 

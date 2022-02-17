@@ -24,7 +24,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'com.example.pokemongame'
-    mainClass = 'com.example.pokemongame.HelloApplication'
+    mainClass = 'com.example.pokemongame.EscenarioSeleccion'
 }
 
 javafx {
